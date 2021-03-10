@@ -22,4 +22,9 @@ export class MainPageComponent {
     nombre: 'Maestro roshi',
     poder: 1000
   };
+
+  // tslint:disable-next-line: typedef
+  agregarNuevoPersonaje(argumento: Personaje){
+    this.personajes.push(argumento);
+  }
 }

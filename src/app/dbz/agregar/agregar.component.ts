@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 import { Personaje } from '../interfaces/dbz.interfaces';
 
 @Component({
@@ -6,12 +6,14 @@ import { Personaje } from '../interfaces/dbz.interfaces';
   templateUrl: './agregar.component.html'
 })
 export class AgregarComponent {
-  @Input() personajes: Personaje[] = [];
 
   @Input() nuevo: Personaje = {
     nombre: '',
     poder: 0
   };
+
+  // tslint:disable-next-line: no-output-on-prefix
+  @Output() onNuevoPersonaje: EventEmitter<Personaje> = new EventEmitter();
 
   // tslint:disable-next-line: typedef
   agregar(){
@@ -19,13 +21,13 @@ export class AgregarComponent {
       return;
     }
     console.log(this.nuevo);
-
-    this.personajes.push(this.nuevo);
+    this.onNuevoPersonaje.emit(this.nuevo);
 
     this.nuevo = {
       nombre: '',
       poder: 0
     };
+
   }
 
 }
